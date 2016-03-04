@@ -79,7 +79,7 @@
             console.log('error opening device');
             console.log(e.message);
         }
-
+        /*
         // Tell the PicoBoard to send a input data every 50ms
         var pingCmd = new Uint8Array(1);
         pingCmd[0] = 5;
@@ -91,6 +91,7 @@
                 console.log('serial send error: ' + e.message);
             }
         }, 50);
+*/
 /*
         watchdog = setTimeout(function() {
             // This device didn't get good data in time, so give up on it. Clean up and then move on.
