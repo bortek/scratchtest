@@ -7,8 +7,6 @@
     var device = null;
     var rawData = null;
 
-    console.log('beginning scratchSerialRobot extension');
-
     ext.resetAll = function(){};
 
     // Hats / triggers
@@ -48,17 +46,18 @@
     function tryNextDevice() {
         // If potentialDevices is empty, device will be undefined.
         // That will get us back here next time a device is connected.
+        console.log('tryNextDevice()');
         device = potentialDevices.shift();
         if (!device) return;
 
         device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 });
         device.set_receive_handler(function(data) {
-            //console.log('Received: ' + data.byteLength);
-            if(!rawData || rawData.byteLength == 5) rawData = new Uint8Array(data);
+            console.log('Received: ' + data.byteLength);
+            if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
             else rawData = appendBuffer(rawData, data);
 
             //if(rawData.byteLength >= 18) {
-            //    console.log(rawData);
+                console.log(rawData);
                 processData();
                 //device.send(pingCmd.buffer);
             //}
