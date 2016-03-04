@@ -59,19 +59,24 @@
             console.log('device opened')
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
-                if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
-                else rawData = appendBuffer(rawData, data);
+                try{
+                    if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
+                    else rawData = appendBuffer(rawData, data);
 
-                //if(rawData.byteLength >= 18) {
-                    console.log(rawData);
-                    processData();
-                    //device.send(pingCmd.buffer);
-                //}
+                    //if(rawData.byteLength >= 18) {
+                        console.log(rawData);
+                        processData();
+                        //device.send(pingCmd.buffer);
+                    //}
+                }
+                catch (e){
+                    console.log(e.message);
+                }
             });
 
         } catch (e){
-            console.log('error opening device')
-            console.log(e.message)
+            console.log('error opening device');
+            console.log(e.message);
         }
 
         // Tell the PicoBoard to send a input data every 50ms
