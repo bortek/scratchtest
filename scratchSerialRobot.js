@@ -60,12 +60,12 @@
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
                 try{
-                    if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
-                    else rawData = appendBuffer(rawData, data);
+                    //if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
+                    //else rawData = appendBuffer(rawData, data);
 
                     //if(rawData.byteLength >= 18) {
-                        console.log(rawData);
-                        processData();
+                    //    console.log(rawData);
+                    //    processData();
                         //device.send(pingCmd.buffer);
                     //}
                 }
@@ -83,7 +83,12 @@
         var pingCmd = new Uint8Array(1);
         pingCmd[0] = 5;
         poller = setInterval(function() {
-            device.send(pingCmd.buffer);
+            try {
+                device.send(pingCmd.buffer);
+            }
+            catch (e){
+                console.log('serial send error: ' + e.message)
+            }
         }, 50);
         watchdog = setTimeout(function() {
             // This device didn't get good data in time, so give up on it. Clean up and then move on.
