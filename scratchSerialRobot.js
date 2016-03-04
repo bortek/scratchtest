@@ -56,7 +56,7 @@
 
         try{
             device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 });
-            console.log('device opened')/*
+            console.log('device opened')
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
                 try{
@@ -64,7 +64,7 @@
                     //else rawData = appendBuffer(rawData, data);
 
                     //if(rawData.byteLength >= 18) {
-                    //    console.log(rawData);
+                        console.log(rawData);
                     //    processData();
                         //device.send(pingCmd.buffer);
                     //}
@@ -73,7 +73,7 @@
                     console.log(e.message);
                 }
             });
-            */
+            
 
         } catch (e){
             console.log('error opening device');
