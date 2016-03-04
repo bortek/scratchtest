@@ -7,12 +7,12 @@
     var device = null;
     var rawData = null;
 
-    //console.log('beginning scratchSerialRobot extension');
+    console.log('beginning scratchSerialRobot extension');
 
     ext.resetAll = function(){};
 
     // Hats / triggers
-/*
+
     function appendBuffer( buffer1, buffer2 ) {
         var tmp = new Uint8Array( buffer1.byteLength + buffer2.byteLength );
         tmp.set( new Uint8Array( buffer1 ), 0 );
@@ -32,7 +32,7 @@
             watchdog = null;
         }
     }
-*/
+
     // Extension API interactions
     var potentialDevices = [];
     ext._deviceConnected = function(dev) {
@@ -54,12 +54,12 @@
         device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 });
         device.set_receive_handler(function(data) {
             //console.log('Received: ' + data.byteLength);
-            //if(!rawData || rawData.byteLength == 5) rawData = new Uint8Array(data);
-            //else rawData = appendBuffer(rawData, data);
+            if(!rawData || rawData.byteLength == 5) rawData = new Uint8Array(data);
+            else rawData = appendBuffer(rawData, data);
 
             //if(rawData.byteLength >= 18) {
             //    console.log(rawData);
-            //    processData();
+                processData();
                 //device.send(pingCmd.buffer);
             //}
         });
