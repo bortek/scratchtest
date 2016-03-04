@@ -31,6 +31,8 @@
             clearTimeout(watchdog);
             watchdog = null;
         }
+
+        rawData = null;
     }
 
     // Extension API interactions
@@ -47,28 +49,33 @@
     function tryNextDevice() {
         // If potentialDevices is empty, device will be undefined.
         // That will get us back here next time a device is connected.
-        console.log('tryNextDevice()');
+        
         device = potentialDevices.shift();
         if (!device) return;
+        
+        try{
+            device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 }, deviceOpened);
+            console.log(deviceOpened)
+            device.set_receive_handler(function(data) {
+                console.log('Received: ' + data.byteLength);
+                if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
+                else rawData = appendBuffer(rawData, data);
 
-        device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 });
-        device.set_receive_handler(function(data) {
-            console.log('Received: ' + data.byteLength);
-            if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
-            else rawData = appendBuffer(rawData, data);
+                //if(rawData.byteLength >= 18) {
+                    console.log(rawData);
+                    processData();
+                    //device.send(pingCmd.buffer);
+                //}
+            });
+        } catch (e){
 
-            //if(rawData.byteLength >= 18) {
-                console.log(rawData);
-                processData();
-                //device.send(pingCmd.buffer);
-            //}
-        });
+        }
 
         // Tell the PicoBoard to send a input data every 50ms
         var pingCmd = new Uint8Array(1);
-        pingCmd[0] = 1;
+        pingCmd[0] = 5;
         poller = setInterval(function() {
-            //device.send(pingCmd.buffer);
+            device.send(pingCmd.buffer);
         }, 50);
         watchdog = setTimeout(function() {
             // This device didn't get good data in time, so give up on it. Clean up and then move on.
@@ -79,7 +86,7 @@
             device.close();
             device = null;
             tryNextDevice();
-        }, 250);
+        }, 1000);
     };
 
     ext._deviceRemoved = function(dev) {
