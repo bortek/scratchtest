@@ -88,19 +88,21 @@
                 device.send(pingCmd.buffer);
             }
             catch (e){
-                console.log('serial send error: ' + e.message)
+                console.log('serial send error: ' + e.message);
             }
         }, 50);
+/*
         watchdog = setTimeout(function() {
             // This device didn't get good data in time, so give up on it. Clean up and then move on.
             // If we get good data then we'll terminate this watchdog.
             clearInterval(poller);
             poller = null;
-            device.set_receive_handler(null);
-            device.close();
+            //device.set_receive_handler(null);
+            try {device.close();} catch (e){console.log('error closing device');}
             device = null;
             tryNextDevice();
         }, 250);
+*/
     };
 
     ext._deviceRemoved = function(dev) {
