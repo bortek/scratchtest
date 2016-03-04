@@ -68,7 +68,7 @@
                 //}
             });
         } catch (e){
-
+            console.log(e)
         }
 
         // Tell the PicoBoard to send a input data every 50ms
