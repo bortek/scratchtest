@@ -52,10 +52,11 @@
         
         device = potentialDevices.shift();
         if (!device) return;
-        
+        console.log('tryNextDevice()')
+
         try{
             device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 }, deviceOpened);
-            console.log(deviceOpened)
+            console.log('device opened')
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
                 if(!rawData || rawData.byteLength >= 5) rawData = new Uint8Array(data);
@@ -68,6 +69,7 @@
                 //}
             });
         } catch (e){
+            console.log('error opening device')
             console.log(e)
         }
 
@@ -86,7 +88,7 @@
             device.close();
             device = null;
             tryNextDevice();
-        }, 1000);
+        }, 250);
     };
 
     ext._deviceRemoved = function(dev) {
