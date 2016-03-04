@@ -18,6 +18,8 @@
         return tmp.buffer;
     }
 
+    var poller = null;
+    var watchdog = null;
     var inputArray = [];
     function processData() {
         var bytes = new Uint8Array(rawData);
@@ -41,8 +43,7 @@
         }
     }
 
-    var poller = null;
-    var watchdog = null;
+
     function tryNextDevice() {
         // If potentialDevices is empty, device will be undefined.
         // That will get us back here next time a device is connected.
@@ -67,7 +68,7 @@
         var pingCmd = new Uint8Array(1);
         pingCmd[0] = 1;
         poller = setInterval(function() {
-            device.send(pingCmd.buffer);
+            //device.send(pingCmd.buffer);
         }, 50);
         watchdog = setTimeout(function() {
             // This device didn't get good data in time, so give up on it. Clean up and then move on.
