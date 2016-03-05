@@ -45,6 +45,10 @@
         }
     }
 
+    function recvData(data){
+        console.log('data received!');
+    }
+
 
     function tryNextDevice() {
         // If potentialDevices is empty, device will be undefined.
@@ -57,6 +61,7 @@
         try{
             device.open({ stopBits: 1, bitRate: 9600, ctsFlowControl: 0 });
             console.log('device opened!');
+            /*
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
                 try{
@@ -73,12 +78,15 @@
                     console.log(e.message);
                 }
             });
+            */
             
 
         } catch (e){
             console.log('error opening device');
             console.log(e.message);
         }
+        device.set_receive_handler(recvData);
+
         
         // Tell the PicoBoard to send a input data every 50ms
         var pingCmd = new Uint8Array(1);
