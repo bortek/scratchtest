@@ -55,7 +55,7 @@
         console.log('device exists!')
 
         try{
-            device.open({ stopBits: 0, bitRate: 115200, ctsFlowControl: 0 });
+            device.open({ stopBits: 1, bitRate: 9600, ctsFlowControl: 0 });
             console.log('device opened!');
             device.set_receive_handler(function(data) {
                 console.log('Received: ' + data.byteLength);
