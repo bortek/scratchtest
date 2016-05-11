@@ -27,7 +27,7 @@
           console.log("received: " + evt.data);
        };
 
-
+       while (!ws.readyState){console.log(ws.readyState)}
 
     }
 /*
