@@ -67,12 +67,12 @@
     }
 
     ext.walk_forward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16, "direction": "forward" };
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16};
       sendCmd(cmd, callback);
     }
 
     ext.walk_backward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16, "direction": "backward" };
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": -50, "turn": 0, "movetime": 16};
       sendCmd(cmd, callback); 
     }
 
@@ -92,7 +92,7 @@
           ['w', 'Get Ready', 'hello'],
           ['w', 'Wiggle', 'wiggle'],
           ['w', 'Walk %n steps forward', 'walk_forward', 2],
-          ['w', 'Walk %n steps backward', 'walk)backward', 2],
+          ['w', 'Walk %n steps backward', 'walk_backward', 2],
           ['w', 'Kick %m.leg leg', 'kick', 'left'],
 //          ['w', 'Demo', 'demo']
         ],
