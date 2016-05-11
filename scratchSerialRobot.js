@@ -71,13 +71,33 @@
       sendCmd(cmd, callback);
     }
 
+    ext.walk_backward = function(numsteps, callback){
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": -50, "turn": 0, "movetime": 16 };
+      sendCmd(cmd, callback); 
+    }
+
+    ext.hello = function(callback){
+      cmd = {"cmd": "hello", "id": 0};
+      sendCmd(cmd, callback);
+    }
+
+    ext.kick = function(leg, callback){
+      cmd = {"cmd": "kick", "id": 8, "leg": leg};
+      sendCmd(cmd, callback); 
+    }
+
 
     var descriptor = {
         blocks: [
-            ['w', 'Wiggle', 'wiggle'],
-            ['w', 'Walk %n steps forward', 'walk_forward', 2]
+          ['w', 'Get Ready', 'hello'],
+          ['w', 'Wiggle', 'wiggle'],
+          ['w', 'Walk %n steps forward', 'walk_forward', 2],
+          ['w', 'Walk %n steps backward', 'walk)backward', 2],
+          ['w', 'Kick %m.leg leg', 'kick', 'left'],
+//          ['w', 'Demo', 'demo']
         ],
         menus: {
+          leg: ['left', 'right'],
         },
 
     };
