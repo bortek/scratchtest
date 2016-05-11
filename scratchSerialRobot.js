@@ -9,7 +9,7 @@
 
     ext.resetAll = function(){};
 
-    var ws = new WebSocket("ws://localhost:5996");
+    var ws = new WebSocket("ws://archie3.local:5996");
 
    ws.onopen = function()
    {
