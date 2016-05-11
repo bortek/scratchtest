@@ -10,18 +10,22 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
+    var wsa = [];
 
 
-    function sendCmd(cmd){
+    function sendCmd(cmd, callback){
         console.log("attempting to connect");
         ws = new WebSocket("ws://archie3.local:5996");
+        wsa.push(ws);
 
         ws.onopen = function()
        {
           // Web Socket is connected, send data using send()
           ws.send("Scratch startup");
           console.log("ws open.");
+          console.log("sending cmd: " + cmd);
           ws.send(cmd);
+          callback();
        };
 
        ws.onmessage = function (evt) 
@@ -48,9 +52,9 @@
 
     ext.send_message = function(callback){
         console.log("send command function");
-        sendCmd("test cmd");
-        window.setTimeout(function(){callback()}, 1000);
-        callback();
+        sendCmd("test cmd",callback);
+        //window.setTimeout(function(){callback()}, 1000);
+        //callback();
     }
 
 
