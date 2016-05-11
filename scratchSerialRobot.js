@@ -67,12 +67,12 @@
     }
 
     ext.walk_forward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16 };
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16, "direction": "forward" };
       sendCmd(cmd, callback);
     }
 
     ext.walk_backward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": -50, "turn": 0, "movetime": 16 };
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16, "direction": "backward" };
       sendCmd(cmd, callback); 
     }
 
