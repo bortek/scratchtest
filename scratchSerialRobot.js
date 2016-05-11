@@ -23,8 +23,8 @@
           // Web Socket is connected, send data using send()
           ws.send("Scratch startup");
           console.log("ws open.");
-          console.log("sending cmd: " + cmd);
           ws.send(cmd);
+          console.log("sending cmd: " + cmd);
           callback();
        };
 
@@ -52,6 +52,7 @@
 
     ext.send_message = function(callback){
         console.log("send command function");
+        console.log("wsa size: "  + wsa.size())
         sendCmd("test cmd",callback);
         //window.setTimeout(function(){callback()}, 1000);
         //callback();
