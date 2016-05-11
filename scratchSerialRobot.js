@@ -23,7 +23,7 @@
           // Web Socket is connected, send data using send()
           ws.send("Scratch startup");
           console.log("ws open.");
-          ws.send(cmd);
+          ws.send("send 2");
           console.log("sending cmd: " + cmd);
           window.setTimeout(function(){callback()}, 1000);
        };
