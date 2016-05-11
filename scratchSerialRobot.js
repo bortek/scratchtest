@@ -52,7 +52,7 @@
 
     ext.send_message = function(callback){
         console.log("send command function");
-        console.log("wsa size: "  + wsa.size())
+        console.log("wsa size: "  + wsa.size());
         sendCmd("test cmd",callback);
         //window.setTimeout(function(){callback()}, 1000);
         //callback();
