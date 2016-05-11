@@ -10,7 +10,7 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
-    function sendCmd(cmd){
+    ext.sendCmd = function(cmd){
         ws = new WebSocket("ws://archie3.local:5996");
 
         ws.onopen = function()
@@ -27,7 +27,7 @@
           console.log("received: " + evt.data);
        };
 
-       while (!ws.readyState){console.log(ws.readyState)}
+
 
     }
 /*
