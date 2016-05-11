@@ -10,29 +10,31 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
-    var wsa = [];
+    ws = new WebSocket("ws://archie3.local:5996");
+
+    ws.onopen = function()
+   {
+      // Web Socket is connected, send data using send()
+      ws.send(cmd);
+      console.log("ws open.");
+      ws.send("send 2");
+      console.log("sending cmd: " + cmd);
+      window.setTimeout(function(){callback()}, 1000);
+   };
+
+   ws.onmessage = function (evt) 
+   { 
+      var received_msg = evt.data;
+      console.log("received: " + evt.data);
+   };
 
 
     function sendCmd(cmd, callback){
-        console.log("attempting to connect");
-        ws = new WebSocket("ws://archie3.local:5996");
-        wsa.push(ws);
+        if (ws.readyState){
+            ws.send(JSON.stringify(cmd));
+        }
+        callback();
 
-        ws.onopen = function()
-       {
-          // Web Socket is connected, send data using send()
-          ws.send("Scratch startup");
-          console.log("ws open.");
-          ws.send("send 2");
-          console.log("sending cmd: " + cmd);
-          window.setTimeout(function(){callback()}, 1000);
-       };
-
-       ws.onmessage = function (evt) 
-       { 
-          var received_msg = evt.data;
-          console.log("received: " + evt.data);
-       };
     }
 /*
     var ws = new WebSocket("ws://archie3.local:5996");
@@ -53,6 +55,7 @@
     ext.send_message = function(callback){
         console.log("send command function");
         console.log("wsa size: "  + wsa.length);
+        cmd = {"cmd": "celebrate", "id": 12};
         sendCmd("test cmd",callback);
         //window.setTimeout(function(){callback()}, 1000);
         //callback();
