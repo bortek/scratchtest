@@ -10,6 +10,8 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
+
+
     function sendCmd(cmd){
         console.log("attempting to connect");
         ws = new WebSocket("ws://archie3.local:5996");
@@ -45,7 +47,9 @@
     }
 
     ext.send_message = function(callback){
+        console.log("send command function");
         sendCmd("test cmd");
+        window.setTimeout(function(){callback()}, 1000);
         callback();
     }
 
