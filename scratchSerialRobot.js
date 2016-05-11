@@ -8,7 +8,12 @@
     var rawData = null;
 
     ext.resetAll = function(){};
+    ext._deviceConnected = function(){};
 
+    function openws(){
+        ws = new WebSocket("ws://archie3.local:5996");
+    }
+/*
     var ws = new WebSocket("ws://archie3.local:5996");
 
    ws.onopen = function()
@@ -23,7 +28,7 @@
           var received_msg = evt.data;
           console.log("received: " + evt.data);
        };
-
+*/
     ext._shutdown = function() {
         if(device) device.close();
         if(poller) poller = clearInterval(poller);
@@ -32,10 +37,12 @@
 
     ext._getStatus = function() {
         if (!ws.readyState){return {status: 1, msg: 'Websocket connecting'}};
-        return {status: 2, msg: 'PicoBoard connected'};
+        return {status: 2, msg: 'websocket connected'};
     }
 
     ext.send_message = function(){
+        ws = openws();
+        while (!ws.readyState){console.log(ws.readyState)};
         if (ws.readyState){
             ws.send("test message");
             console.log("sending message");
