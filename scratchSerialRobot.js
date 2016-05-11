@@ -56,7 +56,7 @@
         console.log("send command function");
         //console.log("wsa size: "  + wsa.length);
         cmd = {"cmd": "celebrate", "id": 12};
-        sendCmd("test cmd",callback);
+        sendCmd(cmd,callback);
         //window.setTimeout(function(){callback()}, 1000);
         //callback();
     }
