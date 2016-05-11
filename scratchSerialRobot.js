@@ -61,10 +61,21 @@
         //callback();
     }
 
+    ext.wiggle = function(callback){
+      cmd = {"cmd": "celebrate", "id": 12};
+      sendCmd(cmd,callback);
+    }
+
+    ext.walk_forward = function(numsteps, callback){
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16 };
+      sendCmd(cmd, callback);
+    }
+
 
     var descriptor = {
         blocks: [
-            ['w', 'send message', 'send_message'],
+            ['w', 'Wiggle', 'wiggle'],
+            ['w', 'Walk %n steps forward', 'walk_forward', 2]
         ],
         menus: {
         },
