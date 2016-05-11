@@ -10,7 +10,8 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
-    ext.sendCmd = function(cmd){
+    function sendCmd(cmd){
+        console.log("attempting to connect");
         ws = new WebSocket("ws://archie3.local:5996");
 
         ws.onopen = function()
@@ -26,9 +27,6 @@
           var received_msg = evt.data;
           console.log("received: " + evt.data);
        };
-
-
-
     }
 /*
     var ws = new WebSocket("ws://archie3.local:5996");
@@ -42,18 +40,19 @@
     };
 
     ext._getStatus = function() {
-        if (!ws.readyState){return {status: 1, msg: 'Websocket connecting'}};
+        //if (!ws.readyState){return {status: 1, msg: 'Websocket connecting'}};
         return {status: 2, msg: 'websocket connected'};
     }
 
-    ext.send_message = function(){
+    ext.send_message = function(callback){
         sendCmd("test cmd");
+        callback();
     }
 
 
     var descriptor = {
         blocks: [
-            [' ', 'send message', 'send_message'],
+            ['w', 'send message', 'send_message'],
         ],
         menus: {
         },
