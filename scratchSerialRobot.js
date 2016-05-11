@@ -15,11 +15,11 @@
     ws.onopen = function()
    {
       // Web Socket is connected, send data using send()
-      ws.send(cmd);
+      //ws.send(cmd);
       console.log("ws open.");
-      ws.send("send 2");
-      console.log("sending cmd: " + cmd);
-      window.setTimeout(function(){callback()}, 1000);
+      ws.send("scratch started");
+      //console.log("sending cmd: " + cmd);
+      //window.setTimeout(function(){callback()}, 1000);
    };
 
    ws.onmessage = function (evt) 
@@ -54,7 +54,7 @@
 
     ext.send_message = function(callback){
         console.log("send command function");
-        console.log("wsa size: "  + wsa.length);
+        //console.log("wsa size: "  + wsa.length);
         cmd = {"cmd": "celebrate", "id": 12};
         sendCmd("test cmd",callback);
         //window.setTimeout(function(){callback()}, 1000);
