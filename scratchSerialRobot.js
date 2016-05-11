@@ -76,6 +76,15 @@
       sendCmd(cmd, callback); 
     }
 
+    ext.turn = function(direction, numsteps, callback){
+      var turn = 40;
+      if (direction == "left" ){
+        turn = -40;
+      }
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 0, "turn": turn, "movetime": 13};
+      sendCmd(cmd, callback);
+    }
+
     ext.hello = function(callback){
       cmd = {"cmd": "hello", "id": 0};
       sendCmd(cmd, callback);
@@ -86,6 +95,11 @@
       sendCmd(cmd, callback); 
     }
 
+    ext.eyes = function(eyes, callback){
+      cmd = {"cmd": "eyes", "id": 7, "eyes": eyes};
+      sendCmd(cmd, callback);
+    }
+
 
     var descriptor = {
         blocks: [
@@ -93,11 +107,14 @@
           ['w', 'Wiggle', 'wiggle'],
           ['w', 'Walk %n steps forward', 'walk_forward', 2],
           ['w', 'Walk %n steps backward', 'walk_backward', 2],
+          ['w', 'Turn %m.leg %n steps', 'turn', 'left', 2],
           ['w', 'Kick %m.leg leg', 'kick', 'left'],
+          ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
 //          ['w', 'Demo', 'demo']
         ],
         menus: {
           leg: ['left', 'right'],
+          eyes: ['normal', 'wide', 'angry'],
         },
 
     };
