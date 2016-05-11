@@ -25,7 +25,7 @@
           console.log("ws open.");
           ws.send(cmd);
           console.log("sending cmd: " + cmd);
-          callback();
+          window.setTimeout(function(){callback()}, 1000);
        };
 
        ws.onmessage = function (evt) 
