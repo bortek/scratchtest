@@ -10,7 +10,7 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
-    ws = new WebSocket("ws://archie3:5996");
+    ws = new WebSocket("ws://archiezero:5996");
 
     ws.onopen = function()
    {
@@ -78,7 +78,7 @@
 
     ext.turn = function(direction, numsteps, callback){
       var turn = 40;
-      if (direction == "left" ){
+      if (direction == "right" ){
         turn = -40;
       }
       cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 0, "turn": turn, "movetime": 13};
