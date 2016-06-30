@@ -10,7 +10,7 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
-    ws = new WebSocket("ws://archiezero:5996");
+    ws = new WebSocket("ws://archie2:5996");
 
     ws.onopen = function()
    {
