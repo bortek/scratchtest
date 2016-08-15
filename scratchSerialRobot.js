@@ -20,7 +20,7 @@
         if(rcv.sensorData != undefined){
           returnval = rcv.sensorData;
         } else {
-          returnval data;
+          returnval = data;
         }
         if (this.callback != undefined){
           this.callback(returnval);
