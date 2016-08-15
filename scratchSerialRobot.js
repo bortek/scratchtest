@@ -7,8 +7,38 @@
     var device = null;
     var rawData = null;
 
+    var waitingForReply = {
+      setup: function(callback){
+        this.callback = callback;
+        this.timeoutID = window.setTimeout(function(msg) {
+          this.clearCallback();
+        }.bind(this), 2500);
+      },
+
+      clearCallback: function(data){
+        rcv = JSON.parse(data);
+        if(rcv.sensorData != undefined){
+          returnval = rcv.sensorData;
+        } else {
+          returnval data;
+        }
+        if (this.callback != undefined){
+          this.callback(returnval);
+          console.log("callback with data: " + returnval);
+          this.callback = undefined;
+        }
+        if (typeof this.timeoutID === "number") {
+          window.clearTimeout(this.timeoutID);
+          this.timeoutID = undefined;
+        }
+      },
+
+    }
+
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
+
+
 
     ws = new WebSocket("ws://archie2:5996");
 
@@ -26,6 +56,8 @@
    { 
       var received_msg = evt.data;
       console.log("received: " + evt.data);
+
+      waitingForReply.clearCallback(evt.data);
    };
 
 
@@ -33,7 +65,7 @@
         if (ws.readyState){
             ws.send(JSON.stringify(cmd));
         }
-        callback();
+        waitingForReply.setup(callback);
 
     }
 /*
@@ -100,6 +132,11 @@
       sendCmd(cmd, callback);
     }
 
+    ext.switchPressed = function(callback){
+      cmd = {"cmd": "readSensor", "id":0, "sensor": 17};
+      sendCmd(cmd, callback);
+    }
+
 
     var descriptor = {
         blocks: [
@@ -110,11 +147,14 @@
           ['w', 'Turn %m.leg %n steps', 'turn', 'left', 2],
           ['w', 'Kick %m.leg leg', 'kick', 'left'],
           ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
+          ['R', 'Bump switch pressed', 'switchPressed'], 
+
 //          ['w', 'Demo', 'demo']
         ],
         menus: {
           leg: ['left', 'right'],
           eyes: ['normal', 'wide', 'angry'],
+          sagittal: ['forward', 'backward'],
         },
 
     };
