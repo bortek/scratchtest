@@ -139,12 +139,12 @@
     }
 
     ext.lean = function(direction, callback){
-      cmd = {"cmd": "lean", "id": 0, "direction": direction, "amount": 40};
+      cmd = {"cmd": "lean", "id": 0, "direction": direction, "amount": 50};
       sendCmd(cmd, callback);
     }
 
     ext.liftLeg = function(leg, callback){
-      cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 40};
+      cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 60};
       sendCmd(cmd, callback);
     }
 
