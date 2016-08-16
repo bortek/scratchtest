@@ -18,15 +18,16 @@
       clearCallback: function(data){
         try {
           rcv = JSON.parse(data);
+          if(rcv.sensorData != undefined){
+            returnval = rcv.sensorData;
+          } else {
+            returnval = data;
+          }
         } catch(err){
-          rcv.sensorData = undefined;
-        }
-
-        if(rcv.sensorData != undefined){
-          returnval = rcv.sensorData;
-        } else {
           returnval = data;
         }
+
+        
         if (this.callback != undefined){
           this.callback(returnval);
           console.log("callback with data: " + returnval);
