@@ -16,7 +16,12 @@
       },
 
       clearCallback: function(data){
-        rcv = JSON.parse(data);
+        try {
+          rcv = JSON.parse(data);
+        } catch(err){
+          rcv.sensorData = undefined;
+        }
+
         if(rcv.sensorData != undefined){
           returnval = rcv.sensorData;
         } else {
@@ -141,10 +146,14 @@
       cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 40};
       sendCmd(cmd, callback);
     }
-    
 
     ext.lowerLeg = function(callback){
       cmd = {"cmd": "lowerLeg", "id": 11};
+      sendCmd(cmd, callback);
+    }
+
+    ext.moveHip = function(leg, direction, callback){
+      cmd = {"cmd": "moveHip", "id": 2, "leg": leg, "direction": direction, "movetime": 10, "amount": 30};
       sendCmd(cmd, callback);
     }
 
@@ -152,6 +161,7 @@
       cmd = {"cmd": "readSensor", "id":0, "sensor": 17};
       sendCmd(cmd, callback);
     }
+
 
 
     var descriptor = {
@@ -165,6 +175,7 @@
           ['w', 'Lean %m.leg', 'lean', 'left'],
           ['w', 'Lift %m.leg leg', 'liftLeg', 'left'],
           ['w', 'Lower leg', 'lowerLeg'],
+          ['w', 'Move %m.leg leg %m.sagittal', 'moveHip', 'left', 'forward'],
           ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
           ['R', 'Bump switch pressed', 'switchPressed'], 
 
