@@ -132,6 +132,22 @@
       sendCmd(cmd, callback);
     }
 
+    ext.lean = function(direction, callback){
+      cmd = {"cmd": "lean", "id": 0, "direction": direction, "amount": 40};
+      sendCmd(cmd, callback);
+    }
+
+    ext.liftLeg = function(leg, callback){
+      cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 40};
+      sendCmd(cmd, callback);
+    }
+    
+
+    ext.lowerLeg = function(callback){
+      cmd = {"cmd": "lowerLeg", "id": 11};
+      sendCmd(cmd, callback);
+    }
+
     ext.switchPressed = function(callback){
       cmd = {"cmd": "readSensor", "id":0, "sensor": 17};
       sendCmd(cmd, callback);
@@ -146,6 +162,9 @@
           ['w', 'Walk %n steps backward', 'walk_backward', 2],
           ['w', 'Turn %m.leg %n steps', 'turn', 'left', 2],
           ['w', 'Kick %m.leg leg', 'kick', 'left'],
+          ['w', 'Lean %m.leg', 'lean', 'left'],
+          ['w', 'Lift %m.leg leg', 'liftLeg', 'left'],
+          ['w', 'Lower leg', 'lowerLeg'],
           ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
           ['R', 'Bump switch pressed', 'switchPressed'], 
 
