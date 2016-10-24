@@ -7,6 +7,9 @@
     var device = null;
     var rawData = null;
 
+    var hostname = prompt("What is Marty's address?", "marty.local");
+
+
     var waitingForReply = {
       setup: function(callback){
         this.callback = callback;
@@ -44,9 +47,9 @@
     ext.resetAll = function(){};
     ext._deviceConnected = function(){};
 
+    console.log("hostname: " + hostname);
 
-
-    ws = new WebSocket("ws://archie2:5996");
+    ws = new WebSocket("ws://archie2.local:5996");
 
     ws.onopen = function()
    {
