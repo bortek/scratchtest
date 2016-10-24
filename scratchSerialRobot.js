@@ -49,7 +49,7 @@
 
     console.log("hostname: " + hostname);
 
-    ws = new WebSocket("ws://archie2.local:5996");
+    ws = new WebSocket("ws://" + hostname + ":5996");
 
     ws.onopen = function()
    {
