@@ -147,7 +147,7 @@
     }
 
     ext.liftLeg = function(leg, callback){
-      cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 60};
+      cmd = {"cmd": "liftLeg", "id": 10, "leg": leg, "amount": 100};
       sendCmd(cmd, callback);
     }
 
@@ -157,12 +157,17 @@
     }
 
     ext.moveHip = function(leg, direction, callback){
-      cmd = {"cmd": "moveHip", "id": 2, "leg": leg, "direction": direction, "movetime": 10, "amount": 30};
+      cmd = {"cmd": "moveHip", "id": 2, "leg": leg, "direction": direction, "movetime": 1000, "amount": 30};
       sendCmd(cmd, callback);
     }
 
     ext.switchPressed = function(callback){
       cmd = {"cmd": "readSensor", "id":0, "sensor": 17};
+      sendCmd(cmd, callback);
+    }
+
+    ext.moveJoint = function(joint, angle, movetime, callback){
+      cmd = {"cmd": "moveJoint", "id": 12, "joint": joint, "angle": angle, "movetime": movetime*1000};
       sendCmd(cmd, callback);
     }
 
@@ -182,6 +187,7 @@
           ['w', 'Move %m.leg leg %m.sagittal', 'moveHip', 'left', 'forward'],
           ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
           ['R', 'Bump switch pressed', 'switchPressed'], 
+          ['w', 'Move %m.joints to %n degrees in %n secs', 'moveJoint', 'right hip', 0, 0],
 
 //          ['w', 'Demo', 'demo']
         ],
@@ -189,6 +195,7 @@
           leg: ['left', 'right'],
           eyes: ['normal', 'wide', 'angry'],
           sagittal: ['forward', 'backward'],
+          joints: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm', 'eyes'],
         },
 
     };
