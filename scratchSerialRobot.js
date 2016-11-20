@@ -108,12 +108,12 @@
     }
 
     ext.walk_forward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 16};
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 50, "turn": 0, "movetime": 1600};
       sendCmd(cmd, callback);
     }
 
     ext.walk_backward = function(numsteps, callback){
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": -50, "turn": 0, "movetime": 16};
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": -50, "turn": 0, "movetime": 1600};
       sendCmd(cmd, callback); 
     }
 
@@ -122,7 +122,7 @@
       if (direction == "right" ){
         turn = -40;
       }
-      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 0, "turn": turn, "movetime": 13};
+      cmd = {"cmd": "walk", "id": 6, "numsteps": numsteps, "steplength": 0, "turn": turn, "movetime": 1300};
       sendCmd(cmd, callback);
     }
 
