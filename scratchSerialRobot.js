@@ -171,6 +171,10 @@
       sendCmd(cmd, callback);
     }
 
+    ext.getGPIO = function(channel, callback){
+      cmd = {"cmd": "get", "sensor": "gpio", "sensor_id": parseInt(channel)};
+      sendCmd(cmd, callback);
+    }
 
 
     var descriptor = {
@@ -188,6 +192,7 @@
           ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
           ['R', 'Bump switch pressed', 'switchPressed'], 
           ['w', 'Move %m.joints to %n degrees in %n secs', 'moveJoint', 'right hip', 0, 0],
+          ['R', 'Input %m.gpios', 'getGPIO', '0'],
 
 //          ['w', 'Demo', 'demo']
         ],
@@ -196,6 +201,7 @@
           eyes: ['normal', 'wide', 'angry'],
           sagittal: ['forward', 'backward'],
           joints: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm', 'eyes'],
+          gpios: ['1', '2', '3', '4', '5', '6', '7', '8'],
         },
 
     };
