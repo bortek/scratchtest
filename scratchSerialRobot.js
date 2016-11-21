@@ -172,7 +172,7 @@
     }
 
     ext.getGPIO = function(channel, callback){
-      cmd = {"cmd": "get", "sensor": "gpio", "sensor_id": parseInt(channel)};
+      cmd = {"cmd": "get", "id": 14, "sensor": "gpio", "sensor_id": parseInt(channel)};
       sendCmd(cmd, callback);
     }
 
