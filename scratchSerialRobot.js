@@ -176,6 +176,22 @@
       sendCmd(cmd, callback);
     }
 
+    ext.getMotorCurrent = function(joint, callback){
+      cmd = {"cmd": "get", "id": 14, "sensor": "current", "joint": joint};
+      sendCmd(cmd, callback);
+    }
+
+    ext.getAccel = function(axis, callback){
+      cmd = {"cmd": "get", "id": 14, "sensor": "accelerometer", "axis": axis};
+      sendCmd(cmd, callback);
+    }
+
+    ext.getBattery = function(callback){
+      cmd = {"cmd": "get", "id": 14, "sensor": "battery"};
+      sendCmd(cmd, callback);
+    }
+
+
 
     var descriptor = {
         blocks: [
@@ -193,6 +209,9 @@
           ['R', 'Bump switch pressed', 'switchPressed'], 
           ['w', 'Move %m.joints to %n degrees in %n secs', 'moveJoint', 'right hip', 0, 0],
           ['R', 'Input %m.gpios', 'getGPIO', '0'],
+          ['R', '%m.motorCurrents motor Current', 'getMotorCurrent', 'right arm'],
+          ['R', 'Accelerometer %m.accel', 'getAccel', 'Z axis'],
+          ['R', 'Battery voltage', 'getBattery'],
 
 //          ['w', 'Demo', 'demo']
         ],
@@ -201,7 +220,9 @@
           eyes: ['normal', 'wide', 'angry'],
           sagittal: ['forward', 'backward'],
           joints: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm', 'eyes'],
-          gpios: ['1', '2', '3', '4', '5', '6', '7', '8'],
+          gpios: ['0', '1', '2', '3', '4', '5', '6', '7'],
+          motorCurrents: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm'],
+          accel: ['X axis', 'Y axis', 'Z axis']
         },
 
     };
