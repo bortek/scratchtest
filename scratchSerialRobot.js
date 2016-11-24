@@ -223,7 +223,7 @@
         ],
         menus: {
           leg: ['left', 'right'],
-          eyes: ['normal', 'wide', 'angry'],
+          eyes: ['normal', 'wide', 'angry', 'excited'],
           sagittal: ['forward', 'backward'],
           joints: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm', 'eyes'],
           gpios: ['0', '1', '2', '3', '4', '5', '6', '7'],
