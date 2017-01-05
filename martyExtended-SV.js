@@ -7,7 +7,7 @@
     var device = null;
     var rawData = null;
 
-    var hostname = prompt("What is Marty's address?", "marty.local");
+    var hostname = prompt("Knappa in Martys IP address?", "192.168.0.241");
     console.log("2016-12-07 17:26")
 
 
@@ -209,36 +209,36 @@
 
     var descriptor = {
         blocks: [
-          ['w', 'Get Ready', 'hello'],
-          ['w', 'Turn off motors', 'disableMotors'],
-          ['w', 'Wiggle', 'wiggle'],
-          ['w', 'Walk: %n steps, step length: %n, turn amount: %n, step time: %n', 'walk', 2, 40, 10, 1.8],
-          ['w', 'Walk %n steps forward', 'walk_forward', 2],
-          ['w', 'Walk %n steps backward', 'walk_backward', 2],
-          ['w', 'Turn %m.leg %n steps', 'turn', 'left', 2],
-          ['w', 'Kick %m.leg leg', 'kick', 'left'],
-          ['w', 'Lean %m.leg', 'lean', 'left'],
-          ['w', 'Lift %m.leg leg', 'liftLeg', 'left'],
-          ['w', 'Lower leg', 'lowerLeg'],
-          ['w', 'Move %m.leg leg %m.sagittal in %n secs', 'moveHip', 'left', 'forward', 1.1],
-          ['w', 'Eyes %m.eyes', 'eyes', 'normal'],
-          ['w', 'Move %m.joints to %n degrees in %n secs', 'moveJoint', 'right hip', 0, 0],
-          ['R', 'Bump switch pressed', 'switchPressed'], 
-          ['R', 'Input %m.gpios', 'getGPIO', '0'],
-          ['R', '%m.motorCurrents motor Current', 'getMotorCurrent', 'right arm'],
-          ['R', 'Accelerometer %m.accel', 'getAccel', 'Z axis'],
-          ['R', 'Battery voltage', 'getBattery'],
+          ['w', 'Gör klar', 'hello'],
+          ['w', 'Stäng av motorer', 'disableMotors'],
+          ['w', 'Vifta', 'wiggle'],
+          ['w', 'Gå: %n steg, steg lengd: %n, vänd mängd: %n, steg tid: %n', 'walk', 2, 40, 10, 1.8],
+          ['w', 'Gå %n steg fram', 'walk_forward', 2],
+          ['w', 'Gå %n steg bak', 'walk_backward', 2],
+          ['w', 'Vänd %m.leg %n steg', 'turn', 'vänster', 2],
+          ['w', 'Kicka %m.leg fot', 'kick', 'vänster'],
+          ['w', 'Luta %m.leg', 'lean', 'vänster'],
+          ['w', 'Lyft %m.leg fot', 'liftLeg', 'vänster'],
+          ['w', 'Sänk fot', 'lowerLeg'],
+          ['w', 'Rör %m.leg fot %m.sagittal i %n sekunder', 'moveHip', 'vänster', 'fram', 1.1],
+          ['w', 'Ögon %m.eyes', 'eyes', 'vanliga'],
+          ['w', 'Rör %m.joints till %n grader i %n sekunder', 'moveJoint', 'höger höft', 0, 0],
+          ['R', 'Stöt knap intryckt', 'switchPressed'], 
+          ['R', 'Ingång %m.gpios', 'getGPIO', '0'],
+          ['R', '%m.motorCurrents motor Ström', 'getMotorCurrent', 'höger arm'],
+          ['R', 'Accelerometer %m.accel', 'getAccel', 'Z axel'],
+          ['R', 'Batterispänninge', 'getBattery'],
 
 //          ['w', 'Demo', 'demo']
         ],
         menus: {
-          leg: ['left', 'right'],
-          eyes: ['normal', 'wide', 'angry', 'excited'],
-          sagittal: ['forward', 'backward'],
-          joints: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm', 'eyes'],
+          leg: ['vänster', 'höger'],
+          eyes: ['vanliga', 'vida', 'arga', 'upphetsade'],
+          sagittal: ['fram', 'bak'],
+          joints: ['höger höft', 'höger twist', 'höger knee', 'vänster höft', 'vänster twist', 'vänster knee', 'höger arm', 'vänster arm', 'eyes'],
           gpios: ['0', '1', '2', '3', '4', '5', '6', '7'],
-          motorCurrents: ['right hip', 'right twist', 'right knee', 'left hip', 'left twist', 'left knee', 'right arm', 'left arm'],
-          accel: ['X axis', 'Y axis', 'Z axis'],
+          motorCurrents: ['höger höft', 'höger twist', 'höger knee', 'vänster höft', 'vänster twist', 'vänster knee', 'höger arm', 'vänster arm'],
+          accel: ['X axel', 'Y axel', 'Z axel'],
         },
 
     };
